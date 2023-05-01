@@ -29,6 +29,7 @@ public class ProductController implements ErrorController {
 	@Autowired
 	private ProductRepository productRepo;
 	
+	
 	@GetMapping("/easybuyapi/product")
     public String productPage() {
         // Your product dashboard logic here
@@ -37,7 +38,17 @@ public class ProductController implements ErrorController {
         return "This is the product page !";
     }
 	
+<<<<<<< HEAD
     //Get products based on their category 
+=======
+//	//create new cruise
+//    @RequestMapping(value = "/easybuyapi/addProduct", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+//    @ResponseStatus(value = HttpStatus.OK)
+//    void addProduct(@RequestBody ProductModel newProduct) throws Exception {
+//    	cruiseService.addCruise(newCruise);
+//    }
+    //Get products by category
+>>>>>>> 718d4fc6a76c7494e4dd21b8fc882854ad4f59d4
     @GetMapping("/easybuyapi/products")
     public ResponseEntity<List<ProductModel>> getProductsByCategory(@RequestParam("category") String category) {
     List<ProductModel> products = productRepo.findByCategory(category);
