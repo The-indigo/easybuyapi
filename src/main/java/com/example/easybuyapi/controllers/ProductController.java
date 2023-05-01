@@ -37,7 +37,7 @@ public class ProductController implements ErrorController {
         return "This is the product page !";
     }
 	
-    //Get products by category
+    //Get products based on their category 
     @GetMapping("/easybuyapi/products")
     public ResponseEntity<List<ProductModel>> getProductsByCategory(@RequestParam("category") String category) {
     List<ProductModel> products = productRepo.findByCategory(category);
@@ -46,7 +46,6 @@ public class ProductController implements ErrorController {
     }
     return ResponseEntity.ok(products);
 }
-
 
     // 
 	//create new cruise

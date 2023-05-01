@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 public class UserController {
 
     @Autowired
-    private UserRepository userRepository;
+    private UserRepository userRepo;
 
     
 }
