@@ -13,7 +13,7 @@ public class ProductModel{
 	@Id
 	private int id;
 	private String name;
-	private double price;
+	private Double price;
 	private String image;
 	private String category;
 	
@@ -21,7 +21,7 @@ public class ProductModel{
 		super();
 	}
 	
-	public ProductModel(int id, String name, double price, String image, String category) {
+	public ProductModel(int id, String name, Double price, String image, String category) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -45,7 +45,7 @@ public class ProductModel{
 	public double getPrice() {
 		return price;
 	}
-	public void setPrice(double price) {
+	public void setPrice(Double price) {
 		this.price = price;
 	}
 	public String getImage() {
