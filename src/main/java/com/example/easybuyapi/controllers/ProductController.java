@@ -28,14 +28,6 @@ public class ProductController implements ErrorController {
 	@Autowired
 	private ProductRepository productRepo;
 
-	@GetMapping("/easybuyapi/product")
-    public String productPage() {
-        // Your product dashboard logic here
-        // You can see the list of all products with all product info etc.
-        // Return statement for now to test
-        return "This is the product page !";
-    }
-
 	//create new product
     @RequestMapping(value = "/easybuyapi/addProduct", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
