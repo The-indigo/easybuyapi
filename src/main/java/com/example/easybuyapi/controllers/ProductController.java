@@ -1,9 +1,12 @@
-package com.example.easybuyapi.controllers;
+package com.example.easybuyapi.Controllers;
+
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,5 +44,23 @@ public class ProductController implements ErrorController {
 //    void addProduct(@RequestBody ProductModel newProduct) throws Exception {
 //    	cruiseService.addCruise(newCruise);
 //    }
+    //Get products by category
+    @GetMapping("/easybuyapi/products")
+    public ResponseEntity<List<ProductModel>> getProductsByCategory(@RequestParam("category") String category) {
+    List<ProductModel> products = productRepo.findByCategory(category);
+    if(products.isEmpty()) {
+        return ResponseEntity.noContent().build();
+    }
+    return ResponseEntity.ok(products);
+}
+
+
+    // 
+	//create new cruise
+   // @RequestMapping(value = "/easybuyapi/addProduct", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+   // @ResponseStatus(value = HttpStatus.OK)
+    //void addProduct(@RequestBody ProductModel newProduct) throws Exception {
+    //	cruiseService.addCruise(newCruise);
+   // }
 
 }

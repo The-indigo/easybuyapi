@@ -1,4 +1,4 @@
-package com.example.easybuyapi.controllers;
+package com.example.easybuyapi.Controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
