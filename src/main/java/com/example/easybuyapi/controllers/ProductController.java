@@ -18,13 +18,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.easybuyapi.models.ProductModel;
 import com.example.easybuyapi.models.UserModel;
 import com.example.easybuyapi.repositories.ProductRepository;
-import com.james.Cruise;
+
 
 @RestController
 public class ProductController implements ErrorController {
 
 	@Autowired
 	private ProductRepository productRepo;
+	
 	
 	@GetMapping("/easybuyapi/product")
     public String productPage() {
@@ -34,11 +35,11 @@ public class ProductController implements ErrorController {
         return "This is the product page !";
     }
 	
-	//create new cruise
-    @RequestMapping(value = "/easybuyapi/addProduct", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseStatus(value = HttpStatus.OK)
-    void addProduct(@RequestBody ProductModel newProduct) throws Exception {
-    	cruiseService.addCruise(newCruise);
-    }
+//	//create new cruise
+//    @RequestMapping(value = "/easybuyapi/addProduct", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+//    @ResponseStatus(value = HttpStatus.OK)
+//    void addProduct(@RequestBody ProductModel newProduct) throws Exception {
+//    	cruiseService.addCruise(newCruise);
+//    }
 
 }
