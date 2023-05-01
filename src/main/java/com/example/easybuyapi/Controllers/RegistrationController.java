@@ -1,4 +1,4 @@
-package com.example.easybuyapi.controllers;
+package com.example.easybuyapi.Controllers;
 
 import com.example.easybuyapi.models.UserModel;
 import org.springframework.web.bind.annotation.*;
