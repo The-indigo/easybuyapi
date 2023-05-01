@@ -1,4 +1,4 @@
-package com.example.easybuyapi.Controllers;
+package com.example.easybuyapi.controllers;
 
 public class WishlistController {
     

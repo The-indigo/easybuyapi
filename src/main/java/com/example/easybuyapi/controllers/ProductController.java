@@ -1,4 +1,4 @@
-package com.example.easybuyapi.Controllers;
+package com.example.easybuyapi.controllers;
 
 import java.util.List;
 
@@ -28,7 +28,7 @@ public class ProductController implements ErrorController {
 
 	@Autowired
 	private ProductRepository productRepo;
-	
+
 	
 	@GetMapping("/easybuyapi/product")
     public String productPage() {
@@ -38,12 +38,40 @@ public class ProductController implements ErrorController {
         return "This is the product page !";
     }
 	
-//	//create new cruise
-//    @RequestMapping(value = "/easybuyapi/addProduct", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-//    @ResponseStatus(value = HttpStatus.OK)
-//    void addProduct(@RequestBody ProductModel newProduct) throws Exception {
-//    	cruiseService.addCruise(newCruise);
-//    }
+	//create new product
+    @RequestMapping(value = "/easybuyapi/addProduct", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(value = HttpStatus.OK)
+    void addProduct(@RequestBody ProductModel newProduct) throws Exception {
+    	addProductService(newProduct);
+    }
+    
+    //return and displays the list of all product
+    @RequestMapping(value = "/easybuyapi/productList", method = RequestMethod.GET)
+    Iterable<ProductModel> getAllProducts() {
+        return getAllProductService();
+    }
+    
+    //service method to get list of all product 
+  	public Iterable<ProductModel> getAllProductService(){
+  		
+
+  		return productRepo.findAll();
+  	}
+
+	//service method to add a new product to list
+	public void addProductService(ProductModel newProduct) throws Exception{
+		//check if product already exist. if yes, you cannot create
+		if(productRepo.findById(newProduct.getId()) != null) {
+			throw new Exception("This product Id already exist: "+ newProduct.getId());
+		}
+		else {
+			productRepo.save(newProduct);
+			System.out.println("Successfully added");
+			
+		}
+	}
+
+	
     //Get products by category
     @GetMapping("/easybuyapi/products")
     public ResponseEntity<List<ProductModel>> getProductsByCategory(@RequestParam("category") String category) {
@@ -54,13 +82,5 @@ public class ProductController implements ErrorController {
     return ResponseEntity.ok(products);
 }
 
-
-    // 
-	//create new cruise
-   // @RequestMapping(value = "/easybuyapi/addProduct", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-   // @ResponseStatus(value = HttpStatus.OK)
-    //void addProduct(@RequestBody ProductModel newProduct) throws Exception {
-    //	cruiseService.addCruise(newCruise);
-   // }
 
 }
