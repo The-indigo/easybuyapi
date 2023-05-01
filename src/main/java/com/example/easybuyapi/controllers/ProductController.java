@@ -25,11 +25,9 @@ import com.example.easybuyapi.repositories.ProductRepository;
 
 @RestController
 public class ProductController implements ErrorController {
-
 	@Autowired
 	private ProductRepository productRepo;
 
-	
 	@GetMapping("/easybuyapi/product")
     public String productPage() {
         // Your product dashboard logic here
@@ -37,7 +35,7 @@ public class ProductController implements ErrorController {
         // Return statement for now to test
         return "This is the product page !";
     }
-	
+
 	//create new product
     @RequestMapping(value = "/easybuyapi/addProduct", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
@@ -71,16 +69,14 @@ public class ProductController implements ErrorController {
 		}
 	}
 
-	
-    //Get products by category
-    @GetMapping("/easybuyapi/products")
-    public ResponseEntity<List<ProductModel>> getProductsByCategory(@RequestParam("category") String category) {
-    List<ProductModel> products = productRepo.findByCategory(category);
-    if(products.isEmpty()) {
-        return ResponseEntity.noContent().build();
+    @GetMapping("/easybuyapi/v1/products")
+    public ResponseEntity<List<ProductModel>> getProductsByCategory(@RequestParam("category") String category)  {
+        List<ProductModel> products = productRepo.findByCategory(category);
+        if(products.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.ok(products);
     }
-    return ResponseEntity.ok(products);
-}
 
 
 }
