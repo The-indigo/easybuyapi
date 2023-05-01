@@ -33,7 +33,7 @@ public class WishlistController {
     @Autowired
     private ProductRepository productRepository;
     
-    @PostMapping("/easybuyapi/{userId}/{productId}")
+    @PostMapping("/easybuyapi/v1/{userId}/{productId}")
     public ResponseEntity<?> addToWishlist(@PathVariable int userId, @PathVariable int productId) {
         // Check if user and product exist
         if (!userRepository.existsById(userId) || !productRepository.existsById(productId)) {
@@ -54,7 +54,7 @@ public class WishlistController {
         return ResponseEntity.status(HttpStatus.CREATED).body(item);
     }
     
-    @DeleteMapping("/easybuyapi/{userId}/{productId}")
+    @DeleteMapping("/easybuyapi/v1/{userId}/{productId}")
     public ResponseEntity<?> removeFromWishlist(@PathVariable int userId, @PathVariable int productId) {
         // Check if item exists in wishlist
         WishlistModel item = wishlistRepository.findByUserIdAndProductId(userId, productId);
@@ -67,7 +67,7 @@ public class WishlistController {
         return ResponseEntity.status(HttpStatus.OK).body("Item removed from wishlist.");
     }
     
-    @GetMapping("/easybuyapi/{userId}")
+    @GetMapping("/easybuyapi/v1/{userId}")
     public ResponseEntity<?> getWishlistItems(@PathVariable int userId) {
         // Check if user exists
         if (!userRepository.existsById(userId)) {
