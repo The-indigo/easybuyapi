@@ -32,9 +32,30 @@ public class CartController {
     private UserRepository userRepository;
     
     @Autowired
+    private CartRepository cartRepository;
+    
+    @Autowired
     private ProductRepository productRepository;
     
-   
+    @DeleteMapping("/easybuyapi/v1/{cartId}")
+    public ResponseEntity<?> decreaseItemFromCart(@PathVariable int cartId) {
+        // Check if item exists in cart
+        CartModel item = cartRepository.findById(cartId);
+        if (item == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Item not found in wishlist.");
+        }
+        if (item.getQuantity() == 1) {
+        	cartRepository.delete(item);
+        }
+        else {
+        	int initialQuantity = item.getQuantity();
+        	item.setQuantity(initialQuantity-1);
+        	cartRepository.save(item);
+        }
+        
+        
+        return ResponseEntity.status(HttpStatus.OK).body("Item removed from wishlist.");
+    }
 
     
 }

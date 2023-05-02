@@ -7,5 +7,5 @@ import com.example.easybuyapi.models.CartModel;
 public interface CartRepository extends JpaRepository<CartModel, Integer> {
 
 	CartModel findByUserIdAndProductId(int userId, int productId); //finds an item in the cart
-    
+    CartModel findById(int id); //find item in cart by id
 }
