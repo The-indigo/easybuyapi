@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.easybuyapi.models.CartModel;
+import com.example.easybuyapi.models.ProductModel;
 import com.example.easybuyapi.models.WishlistModel;
 import com.example.easybuyapi.repositories.CartRepository;
 import com.example.easybuyapi.repositories.ProductRepository;
@@ -29,6 +30,9 @@ public class WishlistController {
     
     @Autowired
     private UserRepository userRepository;
+    
+    @Autowired
+    private CartRepository cartRepository;
     
     @Autowired
     private ProductRepository productRepository;
@@ -79,4 +83,42 @@ public class WishlistController {
         return ResponseEntity.status(HttpStatus.OK).body(items);
     }
     
+    @PostMapping("/easybuyapi/v1/cart/{wishlistId}")
+    public ResponseEntity<?> addProductsFromWishList(@PathVariable int wishlistId)  {
+
+        // Retrieve wishlist item with specific id
+        WishlistModel wishlistItem = wishlistRepository.findById(wishlistId);
+        
+
+        if (wishlistItem == null) {
+			System.out.println("here1");
+            return ResponseEntity.noContent().build();
+        }
+        
+        //retrieve info from the wishlist item 
+        int  userId = wishlistItem.getUserId();
+        int productId = wishlistItem.getProductId();
+        int quantity =1;
+        
+        // Check if item already exists in cart. If yes, add item quantity in cart
+        CartModel cartItem = cartRepository.findByUserIdAndProductId(userId, productId);
+        if (cartItem != null) {
+            int newQuantity = cartItem.getQuantity() + quantity;
+            cartItem.setQuantity(newQuantity);
+            cartRepository.save(cartItem);
+            System.out.println("here2");
+            return ResponseEntity.ok(cartItem);
+        }
+
+        // Create new cart item /{userId}/{productId}/{quantity}
+        CartModel item = new CartModel();
+        item.setUserId(userId);
+        item.setProductId(productId);
+        item.setQuantity(quantity);
+        cartRepository.save(item);
+        System.out.println("here3");
+        return ResponseEntity.status(HttpStatus.CREATED).body(item);
+    }
+
+  
 }
