@@ -23,7 +23,6 @@ import com.example.easybuyapi.services.UserService;
 @RestController
 @RequestMapping("/easybuyapi/v1")
 public class UserController {
-
   
     @Autowired 
     private UserService userService;

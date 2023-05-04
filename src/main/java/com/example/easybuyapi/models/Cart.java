@@ -1,15 +1,19 @@
 package com.example.easybuyapi.models;
 
+import jakarta.annotation.Generated;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name="cart")
-public class CartModel {
+public class Cart {
     @Id
     @Column(name="id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     @Column(name="userid")
     private int userId;
@@ -19,10 +23,10 @@ public class CartModel {
     private int quantity;
 
 
-    public CartModel() {
+    public Cart() {
     }
 
-    public CartModel(int id, int userId, int productId, int quantity) {
+    public Cart(int id, int userId, int productId, int quantity) {
         this.id = id;
         this.userId = userId;
         this.productId = productId;
@@ -61,22 +65,22 @@ public class CartModel {
         this.quantity = quantity;
     }
 
-    public CartModel id(int id) {
+    public Cart id(int id) {
         setId(id);
         return this;
     }
 
-    public CartModel userId(int userId) {
+    public Cart userId(int userId) {
         setUserId(userId);
         return this;
     }
 
-    public CartModel productId(int productId) {
+    public Cart productId(int productId) {
         setProductId(productId);
         return this;
     }
 
-    public CartModel quantity(int quantity) {
+    public Cart quantity(int quantity) {
         setQuantity(quantity);
         return this;
     }
