@@ -2,31 +2,31 @@ package com.example.easybuyapi.models;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="cart")
-public class CartModel {
+@Table(name="wishlist")
+public class Wishlist {
     @Id
     @Column(name="id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     @Column(name="userid")
     private int userId;
     @Column(name="productid")
     private int productId;
-    @Column(name="quantity")
-    private int quantity;
 
 
-    public CartModel() {
+    public Wishlist() {
     }
 
-    public CartModel(int id, int userId, int productId, int quantity) {
+    public Wishlist(int id, int userId, int productId) {
         this.id = id;
         this.userId = userId;
         this.productId = productId;
-        this.quantity = quantity;
     }
 
     public int getId() {
@@ -53,31 +53,18 @@ public class CartModel {
         this.productId = productId;
     }
 
-    public int getQuantity() {
-        return this.quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-    public CartModel id(int id) {
+    public Wishlist id(int id) {
         setId(id);
         return this;
     }
 
-    public CartModel userId(int userId) {
+    public Wishlist userId(int userId) {
         setUserId(userId);
         return this;
     }
 
-    public CartModel productId(int productId) {
+    public Wishlist productId(int productId) {
         setProductId(productId);
-        return this;
-    }
-
-    public CartModel quantity(int quantity) {
-        setQuantity(quantity);
         return this;
     }
 
@@ -87,9 +74,12 @@ public class CartModel {
             " id='" + getId() + "'" +
             ", userId='" + getUserId() + "'" +
             ", productId='" + getProductId() + "'" +
-            ", quantity='" + getQuantity() + "'" +
             "}";
     }
 
-
+	public Wishlist orElse(Object object) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
+

@@ -9,6 +9,7 @@ public class EasybuyapiApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(EasybuyapiApplication.class, args);
 		System.out.println("Server is running");
+
 	}
 
 }
