@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.example.easybuyapi.models.Product;
 import com.example.easybuyapi.models.Wishlist;
 
 public interface WishlistRepository extends JpaRepository<Wishlist, Integer> {
