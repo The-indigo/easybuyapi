@@ -13,7 +13,7 @@ public class CartService {
     private CartRepository cartRepository;
 
     public Iterable <Cart> getUserCartService(int id) throws Exception{
-        var cartItems=cartRepository.findByuserid(id);
+        var cartItems=cartRepository.findByuserId(id);
         return cartItems;
     }
 

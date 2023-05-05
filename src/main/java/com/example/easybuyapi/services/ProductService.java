@@ -27,14 +27,14 @@ public class ProductService {
         productList.add(new Product("LG 4K Ultra HD Smart TV", 1299.99, "lgtv.jpg", "Electronics"));
         productList.add(new Product("T-Shirt", 19.99, "tshirt.jpg", "Clothing"));
         productList.add(new Product("Smartphone", 499.99, "smartphone.jpg", "Electronics"));
-        productList.add(new Product("Running Shoes", 79.99, "runningshoes.jpg", "Footwear"));
+        productList.add(new Product("Running Shoes", 79.99, "runningshoes.jpg", "Clothing"));
         productList.add(new Product("Bluetooth Speaker", 59.99, "bluetoothspeaker.jpg", "Electronics"));
-        productList.add(new Product("Watch", 129.99, "watch.jpg", "Accessories"));
-        productList.add(new Product("Laptop", 999.99, "laptop.jpg", "Electronics"));
-        productList.add(new Product("Handbag", 149.99, "handbag.jpg", "Accessories"));
-        productList.add(new Product("Headphones", 89.99, "headphones.jpg", "Electronics"));
-        productList.add(new Product("Sunglasses", 39.99, "sunglasses.jpg", "Accessories"));
-        productList.add(new Product("Fitness Tracker", 69.99, "fitnesstracker.jpg", "Electronics"));
+        productList.add(new Product("iWatch", 129.99, "watch.jpg", "Electronics"));
+        productList.add(new Product("Dell Inspiron 302", 999.99, "laptop.jpg", "Electronics"));
+        productList.add(new Product("Gucci 22", 149.99, "handbag.jpg", "Clothing"));
+        productList.add(new Product("Beats By Ye", 89.99, "headphones.jpg", "Electronics"));
+        productList.add(new Product("Prade Darkshades", 39.99, "sunglasses.jpg", "Clothing"));
+        productList.add(new Product("Fitness Wristwear", 69.99, "fitnesstracker.jpg", "Electronics"));
         
         // Save the products to the database
         productRepository.saveAll(productList);
