@@ -46,8 +46,8 @@ public class ProductService {
     }
 
     public void deleteProductService(int id) throws Exception{
-        var product= productRepository.findById(id);
-        if(product.isEmpty()){
+        boolean product= productRepository.existsById(id);
+        if(!product){
             throw new Exception("Product does not exist");
         }   
         productRepository.deleteById(id);

@@ -99,14 +99,14 @@ public class WishlistController {
         int quantity =1;
         
         // Check if item already exists in cart. If yes, add item quantity in cart
-        Cart cartItem = cartRepository.findByUserIdAndProductId(userId, productId);
-        if (cartItem != null) {
-            int newQuantity = cartItem.getQuantity() + quantity;
-            cartItem.setQuantity(newQuantity);
-            cartRepository.save(cartItem);
-            System.out.println("here2");
-            return ResponseEntity.ok(cartItem);
-        }
+        // Cart cartItem = cartRepository.findByUserIdAndProductId(userId, productId);
+        // if (cartItem != null) {
+        //     int newQuantity = cartItem.getQuantity() + quantity;
+        //     cartItem.setQuantity(newQuantity);
+        //     cartRepository.save(cartItem);
+        //     System.out.println("here2");
+        //     return ResponseEntity.ok(cartItem);
+        // }
 
         // Create new cart item /{userId}/{productId}/{quantity}
         Cart item = new Cart();
