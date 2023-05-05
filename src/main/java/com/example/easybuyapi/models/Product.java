@@ -19,6 +19,14 @@ public class Product{
 	public Product() {
 		super();
 	}
+
+	public Product(String name, Double price, String image, String category) {
+		super();
+		this.name = name;
+		this.price = price;
+		this.image = image;
+		this.category = category;
+	}
 	
 	public Product(int id, String name, Double price, String image, String category) {
 		super();
