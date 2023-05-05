@@ -1,10 +1,15 @@
 package com.example.easybuyapi.services;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.easybuyapi.models.Product;
 import com.example.easybuyapi.repositories.ProductRepository;
+
+import jakarta.annotation.PostConstruct;
 
 @Service
 public class ProductService {
@@ -12,6 +17,29 @@ public class ProductService {
     @Autowired
     ProductRepository productRepository;
 
+    @PostConstruct
+    public void initializeDatabase() {
+        // Create a list of product data
+        List<Product> productList = new ArrayList<>();
+        productList.add(new Product("Apple iPhone 12", 999.99, "iphone12.jpg", "Electronics"));
+        productList.add(new Product("Samsung Galaxy S21", 899.99, "galaxyS21.jpg", "Electronics"));
+        productList.add(new Product("Sony PlayStation 5", 499.99, "ps5.jpg", "Gaming"));
+        productList.add(new Product("LG 4K Ultra HD Smart TV", 1299.99, "lgtv.jpg", "Electronics"));
+        productList.add(new Product("T-Shirt", 19.99, "tshirt.jpg", "Clothing"));
+        productList.add(new Product("Smartphone", 499.99, "smartphone.jpg", "Electronics"));
+        productList.add(new Product("Running Shoes", 79.99, "runningshoes.jpg", "Footwear"));
+        productList.add(new Product("Bluetooth Speaker", 59.99, "bluetoothspeaker.jpg", "Electronics"));
+        productList.add(new Product("Watch", 129.99, "watch.jpg", "Accessories"));
+        productList.add(new Product("Laptop", 999.99, "laptop.jpg", "Electronics"));
+        productList.add(new Product("Handbag", 149.99, "handbag.jpg", "Accessories"));
+        productList.add(new Product("Headphones", 89.99, "headphones.jpg", "Electronics"));
+        productList.add(new Product("Sunglasses", 39.99, "sunglasses.jpg", "Accessories"));
+        productList.add(new Product("Fitness Tracker", 69.99, "fitnesstracker.jpg", "Electronics"));
+        
+        // Save the products to the database
+        productRepository.saveAll(productList);
+    }
+    
     public Product addProductService(String name, Double price, String image, String category) throws Exception {
         if (name.isBlank() || image.isBlank() || category.isBlank() || Double.isNaN(price)) {
             throw new Exception("There are missing fileds");
