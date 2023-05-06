@@ -2,14 +2,17 @@ package com.example.easybuyapi.models;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name="wishlist")
-public class WishlistModel {
+public class Wishlist {
     @Id
     @Column(name="id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     @Column(name="userid")
     private int userId;
@@ -17,10 +20,10 @@ public class WishlistModel {
     private int productId;
 
 
-    public WishlistModel() {
+    public Wishlist() {
     }
 
-    public WishlistModel(int id, int userId, int productId) {
+    public Wishlist(int id, int userId, int productId) {
         this.id = id;
         this.userId = userId;
         this.productId = productId;
@@ -50,17 +53,17 @@ public class WishlistModel {
         this.productId = productId;
     }
 
-    public WishlistModel id(int id) {
+    public Wishlist id(int id) {
         setId(id);
         return this;
     }
 
-    public WishlistModel userId(int userId) {
+    public Wishlist userId(int userId) {
         setUserId(userId);
         return this;
     }
 
-    public WishlistModel productId(int productId) {
+    public Wishlist productId(int productId) {
         setProductId(productId);
         return this;
     }
@@ -73,5 +76,10 @@ public class WishlistModel {
             ", productId='" + getProductId() + "'" +
             "}";
     }
+
+	public Wishlist orElse(Object object) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
 

@@ -1,15 +1,14 @@
 package com.example.easybuyapi.repositories;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.example.easybuyapi.models.ProductModel;
+import com.example.easybuyapi.models.Product;
 
-public interface ProductRepository extends JpaRepository<ProductModel, Integer>{
+public interface ProductRepository extends JpaRepository<Product, Integer>{
 	
-	ProductModel findByName(String name);
-	ProductModel findById(int id);
-	List<ProductModel> findByCategory(String category);
+	Product findByName(String name);
+	// Product findById(int id);
+	List<Product> findByCategory(String category);
 }

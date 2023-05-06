@@ -1,14 +1,13 @@
 package com.example.easybuyapi.models;
 
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name="Products")
-public class ProductModel{
+public class Product{
 	
 	@Id
 	private int id;
@@ -17,11 +16,19 @@ public class ProductModel{
 	private String image;
 	private String category;
 	
-	public ProductModel() {
+	public Product() {
 		super();
 	}
+
+	public Product(String name, Double price, String image, String category) {
+		super();
+		this.name = name;
+		this.price = price;
+		this.image = image;
+		this.category = category;
+	}
 	
-	public ProductModel(int id, String name, Double price, String image, String category) {
+	public Product(int id, String name, Double price, String image, String category) {
 		super();
 		this.id = id;
 		this.name = name;
