@@ -11,5 +11,6 @@ public interface WishlistRepository extends JpaRepository<Wishlist, Integer> {
     Wishlist findByUserIdAndProductId(int userId, int productId); //finds an item in the wishlist
     List<Wishlist> findByUserId(int userId); //all items in the wishlist
     Wishlist findById(int id);
+    List<Wishlist> findByUserIdAndMoveToCart(int userId, boolean moveToCart); //finds all items in the wishlist of a user that should be moved to cart
 
 }
