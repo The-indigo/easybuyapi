@@ -2,9 +2,9 @@ package com.example.easybuyapi.controllers;
 
 import com.example.easybuyapi.models.Cart;
 import com.example.easybuyapi.models.Wishlist;
-import com.example.easybuyapi.repositories.CartRepository;
-import com.example.easybuyapi.repositories.ProductRepository;
-import com.example.easybuyapi.repositories.UserRepository;
+// import com.example.easybuyapi.repositories.CartRepository;
+// import com.example.easybuyapi.repositories.ProductRepository;
+// import com.example.easybuyapi.repositories.UserRepository;
 import com.example.easybuyapi.services.WishlistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
