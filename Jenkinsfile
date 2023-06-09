@@ -12,9 +12,14 @@ pipeline{
                     sh 'mvn clean'
                 }
             }
-            stage('Run test'){
+            stage('Run Maven test'){
                 steps{
                     sh 'mvn test'
+                }
+            }
+            stage("Checkstyle Analysis"){
+                steps{
+                    sh 'mvn checkstyle:checkstyle'
                 }
             }
         }
