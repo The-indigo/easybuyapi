@@ -42,7 +42,7 @@ public class ProductService {
     
     public Product addProductService(String name, Double price, String image, String category) throws Exception {
         if (name.isBlank() || image.isBlank() || category.isBlank() || Double.isNaN(price)) {
-            throw new Exception("There are missing fileds");
+            throw new Exception("There are missing files");
         }
 
         var findProduct = productRepository.findByName(name);
@@ -62,7 +62,7 @@ public class ProductService {
 
     public Product updateProductService(int id, String name, Double price,String image,String category) throws Exception{
         if (name.isBlank() || image.isBlank() || category.isBlank() || Double.isNaN(price)) {
-            throw new Exception("There are missing fileds");
+            throw new Exception("There are missing files");
         }
         var product= productRepository.findById(id);
         if(product.isEmpty()){
