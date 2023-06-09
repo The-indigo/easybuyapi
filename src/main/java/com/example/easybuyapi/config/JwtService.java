@@ -19,7 +19,6 @@ import io.jsonwebtoken.security.Keys;
 
 @Service
 public class JwtService {
-    @Value("${SECRET_KEY}")
     private String SECRET_KEY;
 
     public String extractUserId(String token) {

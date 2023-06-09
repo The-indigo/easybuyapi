@@ -47,13 +47,13 @@ public class WishlistController {
         return ResponseEntity.status(HttpStatus.OK).body(items);
     }
 
-    @PostMapping("/easybuyapi/v1/cart/{wishlistId}")
-    public ResponseEntity<?> addProductsFromWishList(@PathVariable int wishlistId) {
-        Cart cartItem = wishlistService.addProductsToCart(wishlistId);
-        if (cartItem == null) {
-            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-        }
-        return ResponseEntity.status(HttpStatus.CREATED).body(cartItem);
-    }
+    // @PostMapping("/easybuyapi/v1/cart/{wishlistId}")
+    // public ResponseEntity<?> addProductsFromWishList(@PathVariable int wishlistId) {
+    //     Cart cartItem = wishlistService.addProductsToCart(wishlistId);
+    //     if (cartItem == null) {
+    //         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    //     }
+    //     return ResponseEntity.status(HttpStatus.CREATED).body(cartItem);
+    // }
 
 }

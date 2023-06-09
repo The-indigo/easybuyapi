@@ -1,6 +1,5 @@
 package com.example.easybuyapi.repositories;
 
-import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -13,7 +12,7 @@ import jakarta.transaction.Transactional;
 public interface CartRepository extends JpaRepository<Cart, Integer> {
     Iterable <Cart> findByuserId(int userId);
 	Cart findByUserIdAndProductId(int userId, int productId); //finds an item in the cart
-    boolean existsByCartIdAndProductId(int cartId, int productId); //checks if the item already exists in cart
+    // boolean existsByIdAndProductId(int cartId, int productId); //checks if the item already exists in cart
     //List<Cart> findByUserId(int userId);
     
     @Modifying

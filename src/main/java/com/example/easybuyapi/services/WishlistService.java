@@ -65,37 +65,37 @@ public List<Wishlist> getWishlistItems(int userId) {
     return wishlistRepository.findByUserId(userId);
 }
 
-public Cart addProductsToCart(int userId) {
-    // Get all items in the wishlist that should be moved to the cart
-    List<Wishlist> wishlistItemsToMove = wishlistRepository.findByUserIdAndMoveToCart(userId, true);
+// public Cart addProductsToCart(int userId) {
+//     // Get all items in the wishlist that should be moved to the cart
+//     List<Wishlist> wishlistItemsToMove = wishlistRepository.findByUserIdAndMoveToCart(userId, true);
 
-    // Check if user has an existing cart, if not, create one
-    Cart cart = (Cart) cartRepository.findByuserId(userId);
-    if (cart == null) {
-        cart = new Cart();
-        cart.setUserId(userId);
-        cartRepository.save(cart);
-    }
+//     // Check if user has an existing cart, if not, create one
+//     Cart cart = (Cart) cartRepository.findByuserId(userId);
+//     if (cart == null) {
+//         cart = new Cart();
+//         cart.setUserId(userId);
+//         cartRepository.save(cart);
+//     }
 
-    // Add all wishlist items to cart
-    for (Wishlist item : wishlistItemsToMove) {
-        // Check if product exists
-        if (!productRepository.existsById(item.getProductId())) {
-            continue;
-        }
+//     // Add all wishlist items to cart
+//     for (Wishlist item : wishlistItemsToMove) {
+//         // Check if product exists
+//         if (!productRepository.existsById(item.getProductId())) {
+//             continue;
+//         }
 
-        // Check if item already exists in cart
-        if (cartRepository.existsByCartIdAndProductId(cart.getId(), item.getProductId())) {
-            continue;
-        }
+//         // Check if item already exists in cart
+//         if (cartRepository.existsByCartIdAndProductId(cart.getId(), item.getProductId())) {
+//             continue;
+//         }
 
-        // Add item to cart
-        cartRepository.saveCartItem(cart.getId(), item.getProductId(), cart.getQuantity());
-        wishlistRepository.delete(item);
-    }
+//         // Add item to cart
+//         cartRepository.saveCartItem(cart.getId(), item.getProductId(), cart.getQuantity());
+//         wishlistRepository.delete(item);
+//     }
 
-    return cart;
-}
+//     return cart;
+// }
 
 
 
