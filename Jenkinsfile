@@ -6,7 +6,6 @@ pipeline{
         environment{
             GITHUB_TOKEN = credentials('githubtoken')
         }
-
         stages{
             stage('Clean maven target'){
                 steps {
