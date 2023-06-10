@@ -1,6 +1,5 @@
 package com.example.easybuyapi.controllers;
 
-import com.example.easybuyapi.models.Cart;
 import com.example.easybuyapi.models.Wishlist;
 // import com.example.easybuyapi.repositories.CartRepository;
 // import com.example.easybuyapi.repositories.ProductRepository;
@@ -21,8 +20,9 @@ public class WishlistController {
     private WishlistService wishlistService;
 
     @PostMapping("/easybuyapi/v1/{userId}/{productId}")
-    public final ResponseEntity<?> addToWishlist(@PathVariable final int userId, @PathVariable final int productId) {
+    public final ResponseEntity<?> addToWishlist(@PathVariable int userId, @PathVariable int productId) {
         try {
+            
             Wishlist item = wishlistService.addToWishlist(userId, productId);
             return ResponseEntity.ok("Item added to wishlist: " + item.getId());
         } catch (Exception e) {

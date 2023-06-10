@@ -25,22 +25,31 @@ public class WishlistService {
     @Autowired
     private ProductRepository productRepository;
 
+    @Autowired
+    private UserService userService;
+
     public final Wishlist addToWishlist(final int userId, 
     final int productId) throws Exception {
+        var id=userService.getCurrentUserId();
+        if(userId!=id){
+        throw new Exception("You are not currently authenticated");
+        }else{
         // Check if user and product exist
-        if (!userRepository.existsById(userId) || !productRepository.existsById(productId)) {
-            throw new Exception("Cannot find user or product...");
-        }
+     if (!userRepository.existsById(userId) || !productRepository.existsById(productId)) {
+        throw new Exception("Cannot find user or product...");
+    }
 
-        // Check if item already exists in wishlist
-        if (wishlistRepository.existsByUserIdAndProductId(userId, productId)) {
-            throw new Exception("This item is already in your wishlist...");
-        }
+    // Check if item already exists in wishlist
+    if (wishlistRepository.existsByUserIdAndProductId(userId, productId)) {
+        throw new Exception("This item is already in your wishlist...");
+    }
 
-        // Add item to wishlist
-        Wishlist item = new Wishlist(userId, productId);
-        item = wishlistRepository.save(item);
-        return item;
+    // Add item to wishlist
+    Wishlist item = new Wishlist(userId, productId);
+    item = wishlistRepository.save(item);
+    return item;
+        }
+   
     }
 
     public final boolean removeFromWishlist(final int userId, final int productId) {

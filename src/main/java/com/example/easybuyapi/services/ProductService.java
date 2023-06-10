@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import com.example.easybuyapi.models.Product;
 import com.example.easybuyapi.repositories.ProductRepository;
 
-import jakarta.annotation.PostConstruct;
 
 @Service
 public class ProductService {
