@@ -22,6 +22,14 @@ pipeline{
                     sh 'mvn checkstyle:checkstyle'
                 }
             }
+            stage('Build docker image'){
+                steps{
+                    script {
+                        def dockerComposeFile = '.docker-compose.yml'
+                        sh "docker-compose -f ${dockerComposeFile} build"
+                        }
+                }
+            }
         }
     
 }

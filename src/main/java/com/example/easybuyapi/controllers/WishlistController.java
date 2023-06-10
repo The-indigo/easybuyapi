@@ -21,16 +21,18 @@ public class WishlistController {
     private WishlistService wishlistService;
 
     @PostMapping("/easybuyapi/v1/{userId}/{productId}")
-    public ResponseEntity<?> addToWishlist(@PathVariable int userId, @PathVariable int productId) {
-        boolean isAdded = wishlistService.addToWishlist(userId, productId);
-        if (!isAdded) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("Item already exists in wishlist.");
+    public final ResponseEntity<?> addToWishlist(@PathVariable final int userId, @PathVariable final int productId) {
+        try {
+            Wishlist item = wishlistService.addToWishlist(userId, productId);
+            return ResponseEntity.ok("Item added to wishlist: " + item.getId());
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error adding item to wishlist: " + e.getMessage());
         }
-        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @DeleteMapping("/easybuyapi/v1/{userId}/{productId}")
-    public ResponseEntity<?> removeFromWishlist(@PathVariable int userId, @PathVariable int productId) {
+    public final ResponseEntity<?> removeFromWishlist(
+            @PathVariable final int userId, @PathVariable final int productId) {
         boolean isRemoved = wishlistService.removeFromWishlist(userId, productId);
         if (!isRemoved) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Item not found in wishlist.");
@@ -39,7 +41,7 @@ public class WishlistController {
     }
 
     @GetMapping("/easybuyapi/v1/{userId}")
-    public ResponseEntity<?> getWishlistItems(@PathVariable int userId) {
+    public final ResponseEntity<?> getWishlistItems(@PathVariable final int userId) {
         List<Wishlist> items = wishlistService.getWishlistItems(userId);
         if (items == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found.");

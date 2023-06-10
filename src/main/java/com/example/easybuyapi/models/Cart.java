@@ -25,7 +25,13 @@ public class Cart {
     public Cart() {
     }
 
-    public Cart(int id, int userId, int productId, int quantity) {
+       public Cart( int userId,  int productId,  int quantity) {
+        this.userId = userId;
+        this.productId = productId;
+        this.quantity = quantity;
+    }
+
+    public Cart( int id,  int userId,  int productId,  int quantity) {
         this.id = id;
         this.userId = userId;
         this.productId = productId;
@@ -36,15 +42,15 @@ public class Cart {
         return this.id;
     }
 
-    public void setId(int id) {
+    public  void setId( int id) {
         this.id = id;
     }
 
-    public int getUserId() {
+    public  int getUserId() {
         return this.userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId( int userId) {
         this.userId = userId;
     }
 
@@ -52,7 +58,7 @@ public class Cart {
         return this.productId;
     }
 
-    public void setProductId(int productId) {
+    public void setProductId( int productId) {
         this.productId = productId;
     }
 
@@ -60,32 +66,32 @@ public class Cart {
         return this.quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public  void setQuantity( int quantity) {
         this.quantity = quantity;
     }
 
-    public Cart id(int id) {
+    public  Cart id( int id) {
         setId(id);
         return this;
     }
 
-    public Cart userId(int userId) {
+    public  Cart userId( int userId) {
         setUserId(userId);
         return this;
     }
 
-    public Cart productId(int productId) {
+    public  Cart productId( int productId) {
         setProductId(productId);
         return this;
     }
 
-    public Cart quantity(int quantity) {
+    public  Cart quantity( int quantity) {
         setQuantity(quantity);
         return this;
     }
 
     @Override
-    public String toString() {
+    public  String toString() {
         return "{" +
             " id='" + getId() + "'" +
             ", userId='" + getUserId() + "'" +

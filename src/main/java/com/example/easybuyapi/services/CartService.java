@@ -16,6 +16,9 @@ public class CartService {
         var cartItems=cartRepository.findByuserId(id);
         return cartItems;
     }
+    // public Cart addToCartService(int userId,int productId,int quantity) throws Exception{
+        
+    // }
 
     public void updateCartQuantityService(int id,int quantity) throws Exception{
         var item=cartRepository.findById(id).get();
