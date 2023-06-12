@@ -1,11 +1,8 @@
 FROM openjdk:17-slim AS BUILD_IMAGE
 RUN apt update && apt install maven -y
 WORKDIR /usr/src/app
-COPY ../. . 
-RUN ls .
-RUN ls ../
-RUN ls ../.
-RUN ls ../. .
+COPY easybuyapi/ /usr/src/app/
+
 RUN mvn install
 
 FROM tomcat:10-jdk17-openjdk
