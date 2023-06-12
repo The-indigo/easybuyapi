@@ -1,5 +1,5 @@
 FROM openjdk:17-slim AS BUILD_IMAGE
-RUN apt update && apt install maven -y
+RUN apt update && apt install maven && apt install git -y
 RUN git clone https://github.com/The-indigo/easybuyapi
 RUN cd easybuyapi && git checkout demo-branch && mvn install
 
