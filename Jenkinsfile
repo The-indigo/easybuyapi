@@ -26,7 +26,7 @@ pipeline{
                 steps{
                     script {
                         def dockerComposeFile = './docker-compose.yml'
-                        sh "docker-compose -f ${dockerComposeFile} build"
+                        sh "docker compose -f ${dockerComposeFile} build"
                         }
                 }
             }
