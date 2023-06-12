@@ -22,24 +22,14 @@ pipeline{
                     sh 'mvn checkstyle:checkstyle'
                 }
             }
-            stage("Show docker version"){
+            stage('Build docker image'){
                 steps{
-                    sh 'docker version'
+                    script {
+                        def dockerComposeFile = './docker-compose.yml'
+                        sh "docker-compose -f ${dockerComposeFile} build"
+                        }
                 }
-            } 
-            stage("Show docker compose version"){
-                steps{
-                    sh 'docker compose version'
-                }
-            }                        
-            // stage('Build docker image'){
-            //     steps{
-            //         script {
-            //             def dockerComposeFile = './docker-compose.yml'
-            //             sh "docker compose -f ${dockerComposeFile} build"
-            //             }
-            //     }
-            // }
+            }
         }
     
 }
