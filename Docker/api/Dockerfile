@@ -1,4 +1,4 @@
-FROM openjdk:17-oracle AS BUILD_IMAGE
+FROM openjdk:17-jdk-oraclelinux7 AS BUILD_IMAGE
 RUN yum update && yum install mvn -y
 WORKDIR /usr/src/app
 COPY . .
