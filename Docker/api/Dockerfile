@@ -1,5 +1,5 @@
-FROM openjdk:17-jdk-oraclelinux7 AS BUILD_IMAGE
-RUN yum update && yum install mvn -y
+FROM openjdk:17-slim AS BUILD_IMAGE
+RUN apt update && apt install mvn -y
 WORKDIR /usr/src/app
 COPY . .
 RUN mvn install
