@@ -3,6 +3,9 @@ RUN apt update && apt install maven -y
 WORKDIR /usr/src/app
 COPY ../. . 
 RUN ls .
+RUN ls ../
+RUN ls ../.
+RUN ls ../. .
 RUN mvn install
 
 FROM tomcat:10-jdk17-openjdk
