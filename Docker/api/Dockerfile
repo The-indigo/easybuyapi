@@ -1,5 +1,5 @@
 FROM openjdk:17-slim AS BUILD_IMAGE
-RUN apt update && apt install mvn -y
+RUN apt update && apt install maven -y
 WORKDIR /usr/src/app
 COPY . .
 RUN mvn install
