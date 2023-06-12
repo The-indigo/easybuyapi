@@ -1,5 +1,5 @@
 FROM openjdk:17-oracle AS BUILD_IMAGE
-RUN apt-get update && apt-get install mvn -y
+RUN apk update && apk install mvn -y
 WORKDIR /usr/src/app
 COPY . .
 RUN mvn install
