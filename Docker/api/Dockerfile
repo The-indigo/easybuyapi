@@ -1,8 +1,8 @@
 FROM openjdk:17-slim AS BUILD_IMAGE
 RUN apt update && apt install maven -y
 WORKDIR /usr/src/app
-RUN ls ../.
 COPY ../. . 
+RUN ls .
 RUN mvn install
 
 FROM tomcat:10-jdk17-openjdk
