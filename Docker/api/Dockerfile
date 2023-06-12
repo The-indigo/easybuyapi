@@ -1,4 +1,4 @@
-FROM openjdk:17 AS BUILD_IMAGE
+FROM openjdk:17-oracle AS BUILD_IMAGE
 RUN apt update && apt install mvn -y
 WORKDIR /usr/src/app
 COPY . .
