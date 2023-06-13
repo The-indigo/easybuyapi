@@ -1,4 +1,5 @@
 package com.example.easybuyapi.config;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,32 +19,57 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ApplicationConfig {
 
-	@Autowired
+    /** Inject the User repository to access user data. **/
+    @Autowired
     private UserRepository userRepository;
 
+    /**
+     * Retrieves the user details based on the provided email.
+     *
+     * @return the UserDetailsService implementation
+     */
     @Bean
     public UserDetailsService userDetailsService() {
         return email -> userRepository.findByEmail(email);
     }
 
+    /**
+     * Sets the auth provider and password encoder.
+     *
+     * @return the authentication provider
+     */
     @Bean
     public AuthenticationProvider authenticationProvider() {
-        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+    DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
         authProvider.setUserDetailsService(userDetailsService());
         authProvider.setPasswordEncoder(passwordEncoder());
         return authProvider;
     }
 
+    /**
+     * @return the authentication manager
+     *         /**
+     *         Configure the application with the provided configuration.
+     *
+     * @param config the configuration object containing
+     *               the authentication configurations
+     */
     @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
+    public  AuthenticationManager authenticationManager(
+            final AuthenticationConfiguration config)
+            throws Exception {
         return config.getAuthenticationManager();
     }
+
+    /**
+     * Sets the auth provider and password encoder.
+     *
+     * @return the authentication provider
+     */
 
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
-
-    
 }

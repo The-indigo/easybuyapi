@@ -20,14 +20,16 @@ public class SecurityConfiguration {
     private AuthenticationProvider authenticationProvider;
 
     @Autowired
-private final JwtAuthenticationFilter jwtFilter;
+private JwtAuthenticationFilter jwtFilter;
+
 @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
+public SecurityFilterChain securityFilterChain(final HttpSecurity http) throws Exception {
         http
             .csrf()
             .disable()
             .authorizeHttpRequests()
-            .requestMatchers("/easybuyapi/v1/register", "/easybuyapi/v1/login")
+            .requestMatchers("/easybuyapi/v1/register",
+            "/easybuyapi/v1/login")
             .permitAll()
             .anyRequest()
             .authenticated()

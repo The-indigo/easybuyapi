@@ -23,6 +23,11 @@ public class Wishlist {
     public Wishlist() {
     }
 
+      public Wishlist(int userId, int productId) {
+        this.userId = userId;
+        this.productId = productId;
+    }
+
     public Wishlist(int id, int userId, int productId) {
         this.id = id;
         this.userId = userId;
@@ -81,5 +86,7 @@ public class Wishlist {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
 }
 

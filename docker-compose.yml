@@ -1,0 +1,29 @@
+version: "3.9"
+services:
+
+  db:
+    build:
+      context: ./Docker/db
+    image: theyemi/easybuydb
+    container_name: easybuydb
+    ports:
+      - 3306:3306
+    volumes:
+      - dbdata:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=""
+  
+  api:
+    build: 
+      context: ./Docker/api
+    image: theyemi/easybuyapi
+    container_name: easybuyapi
+    ports:
+      - 8080:8080
+    volumes:
+      - apidata:/usr/local/tomcat/webapps
+    depends_on:
+      - db
+volumes:
+  dbdata: {}
+  apidata: {}   
