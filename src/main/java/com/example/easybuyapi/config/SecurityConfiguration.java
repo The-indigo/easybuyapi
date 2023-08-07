@@ -16,14 +16,32 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class SecurityConfiguration {
 
+
+    /**
+     * Indicates that the AuthenticationProvider should be autowired
+     * by spring's dependency injection mechanism.
+     **/
     @Autowired
     private AuthenticationProvider authenticationProvider;
 
+
+    /**
+     * Indicates that the JwtAuthenticationFilter should be autowired
+     * by spring's dependency injection mechanism.
+     **/
     @Autowired
 private JwtAuthenticationFilter jwtFilter;
 
+
+
+/**
+     * Spring's Securityfilterchain implementation.
+     * @return SecurityFilterChain.
+     * @param http
+     **/
 @Bean
-public SecurityFilterChain securityFilterChain(final HttpSecurity http) throws Exception {
+public SecurityFilterChain securityFilterChain(
+    final HttpSecurity http) throws Exception {
         http
             .csrf()
             .disable()
@@ -38,11 +56,8 @@ public SecurityFilterChain securityFilterChain(final HttpSecurity http) throws E
             .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             .and()
             .authenticationProvider(authenticationProvider)
-            .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+            .addFilterBefore(
+                jwtFilter, UsernamePasswordAuthenticationFilter.class);
             return http.build();
     }
-
-
-    
-    
 }
