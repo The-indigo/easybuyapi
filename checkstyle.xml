@@ -1,0 +1,5 @@
+<module name="MagicNumber" severity="off"/>
+<module name="ParameterName" severity="ignore">
+    <property name="tokens" value="PARAM_DEF"/>
+    <property name="format" value="FINAL"/>
+</module>

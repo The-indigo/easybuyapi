@@ -1,6 +1,5 @@
 package com.example.easybuyapi.config;
 
-
 import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,18 +22,25 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
-	@Autowired
+    /**
+     * Indicates that the json web token service should be autowired
+     * by spring's dependency injection mechanism.
+     **/
+    @Autowired
     private JwtService jwtService;
 
-	@Autowired
+    /**
+     * Indicates that the userdetails service should be autowired
+     * by spring's dependency injection mechanism.
+     **/
+    @Autowired
     private UserDetailsService userDetailsService;
 
-
     @Override
-    protected void doFilterInternal(
-            @NonNull HttpServletRequest request,
-            @NonNull HttpServletResponse response,
-            @NonNull FilterChain filterChain)
+    protected final void doFilterInternal(
+            @NonNull final HttpServletRequest request,
+            @NonNull final HttpServletResponse response,
+            @NonNull final FilterChain filterChain)
             throws ServletException, IOException {
         final String authHeader = request.getHeader("Authorization");
         final String jwt;
@@ -46,14 +52,18 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         }
         jwt = authHeader.substring(7);
         email = jwtService.extractUserId(jwt);
-        if (email != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-            UserDetails userDetails = this.userDetailsService.loadUserByUsername(email);
+if (email != null && SecurityContextHolder.getContext().getAuthentication(
+        ) == null) {
+    UserDetails userDetails = this.userDetailsService.loadUserByUsername(
+                    email);
             if (jwtService.isTokenValid(jwt, userDetails)) {
-                UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
+ UsernamePasswordAuthenticationToken authToken = new
+ UsernamePasswordAuthenticationToken(
                         userDetails,
                         null,
                         userDetails.getAuthorities());
-                authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+    authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(
+    request));
                 SecurityContextHolder.getContext().setAuthentication(authToken);
             }
 
