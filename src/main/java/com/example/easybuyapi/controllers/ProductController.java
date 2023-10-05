@@ -19,47 +19,62 @@ import com.example.easybuyapi.services.ProductService;
 @RestController
 @RequestMapping("/easybuyapi/v1")
 public class ProductController implements ErrorController {
-	@Autowired
-	private ProductService productService;
 
-	//create new product
+    /**
+     * Indicates that the ProductService should be autowired
+     * by spring's dependency injection mechanism.
+     **/
+    @Autowired
+    private ProductService productService;
+
+    /**
+     * This method adds a product item to the databse.
+     * @return Product
+     * @param newProduct
+     **/
     @PostMapping("/product/add")
     @ResponseStatus(value = HttpStatus.OK)
-    public Product addProduct(@RequestBody Product newProduct) throws Exception {
-    	return productService.addProductService(newProduct.getName(), 
-		newProduct.getPrice(), newProduct.getImage(), newProduct.getCategory());
+    public Product addProduct(@RequestBody Product newProduct
+    ) throws Exception {
+        return productService.addProductService(
+            newProduct.getName(),
+            newProduct.getPrice(),
+        newProduct.getImage(), newProduct.getCategory());
     }
-    
-    //return and displays the list of all product
+
+
+  /**
+     * Gets the list of all products in the databse.
+     * @return Iterable<Product>
+     **/
     @GetMapping("/product/all")
    public Iterable<Product> getAllProducts() {
         return productService.getAllProductService();
     }
 
-	@PostMapping("/product/update/{id}")
-	public Product updateProduct(@PathVariable("id") int id, @RequestBody Product product) throws Exception{
-		return productService.updateProductService(id, product.getName(), product.getPrice(), product.getImage(),
-		 product.getCategory());
-	}
 
+ /**
+     * Updates a product item in the databse.
+     * @return Product
+     * @param id
+     * @param product
+     **/
+    @PostMapping("/product/update/{id}")
+    public Product updateProduct(@PathVariable("id") int id,
+     @RequestBody Product product) throws Exception{
+        return productService.updateProductService(
+            id, product.getName(), product.getPrice(), product.getImage(),
+            product.getCategory());
+        }
+
+ /**
+     * Updates a product item in the databse.
+     * @return String
+     * @param id
+     **/
 	@DeleteMapping("/product/delete/{id}")
 		public String deleteProduct(@PathVariable("id") int id) throws Exception{
 			productService.deleteProductService(id);
 			return ("Deleted successfully");
 		}
-	
-  
-    // @GetMapping("/easybuyapi/v1/products/{category}")
-    // public ResponseEntity<List<Product>> getProductsByCategory(@PathVariable String category)  {
-    //     List<Product> products = productRepo.findByCategory(category);
-    //     if(products.isEmpty()) {
-	// 		System.out.println("Not Successfully added");
-    //         return ResponseEntity.noContent().build();
-    //     }
-	// 	System.out.println("Successfully added");
-    //     return ResponseEntity.ok(products);
-    // }
-    
-
-
 }

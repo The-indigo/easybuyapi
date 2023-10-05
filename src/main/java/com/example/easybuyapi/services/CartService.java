@@ -28,10 +28,10 @@ public class CartService {
     }
     public Cart addToCartService(Integer userId,Integer productId,int quantity) throws Exception{
         var id=userService.getCurrentUserId();
-        if(userId==null || productId==null){
-        throw new Exception("User or product Field canot be blank..");
+        if (userId == null || productId == null) {
+        throw new Exception("User or product Field cannot be blank..");
         }
-        if(userId!=id){
+        if (userId != id) {
         throw new Exception("You are not currently authenticated..");
         }
         Optional <Product> product=productRepository.findById(productId); 
@@ -39,13 +39,13 @@ public class CartService {
             throw new Exception("item not found..");
         }
 
-        Cart cart= cartRepository.findByUserIdAndProductId(userId,productId);
-        if(cart!=null){
+        Cart cart = cartRepository.findByUserIdAndProductId(userId, productId);
+        if (cart != null) {
         throw new Exception("You already have this item in your cart..");
         }
 
-    Cart cartObject=new Cart(userId,productId,quantity);
-    cartObject= cartRepository.save(cartObject);
+    Cart cartObject = new Cart(userId, productId, quantity);
+    cartObject = cartRepository.save(cartObject);
     return cartObject;
     }
 
